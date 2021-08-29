@@ -1,0 +1,23 @@
+.title {
+    margin: 0 0 6px 0;
+    font-family: MarkPro, sans-serif;
+    font-size: 22px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: #1f2a4b;
+}
+
+.subtitle {
+    margin: 0;
+    font-family: MarkPro, sans-serif;
+    font-size: 16px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: #a1a4ad;
+}
