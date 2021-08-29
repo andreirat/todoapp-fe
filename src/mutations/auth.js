@@ -20,7 +20,16 @@ const LOGIN = gql`
   }
 `;
 
+const REFRESH_TOKEN = gql`
+  mutation RefreshToken {
+    refreshToken {
+      accessToken
+    }
+  }
+`;
+
 export {
   LOGIN,
-  REGISTER
+  REGISTER,
+  REFRESH_TOKEN
 }

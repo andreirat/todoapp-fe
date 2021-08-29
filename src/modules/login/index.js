@@ -1,24 +1,30 @@
 import React, { useState } from "react";
 import { useMutation } from "@apollo/client";
-import { LOGIN } from "../../mutations/auth";
 import { Row, Col } from 'antd';
+import { useHistory } from "react-router-dom";
 
 import "./style.css"
 import "../../styles/common.css"
 import { icons } from "../../assets";
 import Title from "../../components/Title";
 import { Link } from "react-router-dom";
+import { LOGIN } from "../../mutations/auth";
+import { setAccessToken } from "../../utils/auth";
 
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  let history = useHistory();
 
   const [loginUser, {data}] = useMutation(LOGIN, {
     variables: {loginInput: {email, password}},
   });
 
-  if (data && data.success) {
-    //redirect to tasks
+  if (data && data.login.success) {
+    setAccessToken(data.login.accessToken).then(() => {
+      history.push("/")
+      window.location.reload();
+    })
   }
 
   return (

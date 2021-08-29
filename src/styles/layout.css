@@ -5,3 +5,25 @@
 #root {
     height: 100%;
 }
+.logout {
+    height: 18px;
+    outline: none;
+    font-family: MarkPro, sans-serif;
+    font-size: 14px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: #fff;
+    background: transparent;
+    border: none;
+}
+
+.logout-wrapper {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+}

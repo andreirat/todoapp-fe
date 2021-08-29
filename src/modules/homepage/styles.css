@@ -1,0 +1,54 @@
+.tasksList {
+    margin-top: 10px;
+    overflow-y: scroll;
+    height: 150px;
+    margin-bottom: 50px;
+}
+.tasksList::-webkit-scrollbar {
+    display: none;
+}
+
+.wrapper {
+    width: 440px;
+    height: 437px;
+    padding: 35px 30px;
+    border-radius: 5px;
+    box-shadow: 0 2px 16px 0 rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+}
+
+.disabled-button {
+    background: transparent;
+    border: none;
+    padding: 0;
+    margin-left: 10px;
+    height: 18px;
+    font-family: MarkPro, sans-serif;
+    font-size: 14px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: #1f2a4b;
+}
+
+.show-label {
+    width: 42px;
+    margin-right: 7px;
+    height: 18px;
+    font-family: MarkPro, sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    padding: 0;
+    line-height: normal;
+    letter-spacing: normal;
+    color: rgba(31, 42, 75, 0.59);
+}
+
+.active {
+    color: #4a77e5;
+    border-bottom: 1px solid #4a77e5;
+}

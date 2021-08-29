@@ -1,10 +1,11 @@
 import { gql } from "@apollo/client";
 
 const GET_TASKS = gql`
-  {
-    getUserTasks {
-        taskName,
-        isCompleted
+  query GetUserTasks($filter: String!) {
+    getUserTasks(filter: $filter) {
+      taskName,
+        isCompleted,
+        id
     }
   }
 `;

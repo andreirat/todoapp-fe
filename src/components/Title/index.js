@@ -5,7 +5,7 @@ function Title({title, subtitle}) {
   return (
     <div>
       <p className="title">{title}</p>
-      <p className="subtitle">{subtitle}</p>
+      {subtitle && <p className="subtitle">{subtitle}</p>}
     </div>
   );
 }

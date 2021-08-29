@@ -2,26 +2,42 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
 
+import { createHttpLink } from 'apollo-link-http';
+import { setContext } from 'apollo-link-context';
+
 import {Routes} from './modules/Routes';
 import reportWebVitals from './reportWebVitals';
 
 import 'antd/dist/antd.css';
+import { getAccessToken } from "./utils/auth";
+
+const token = getAccessToken();
+
+const httpLink = createHttpLink({
+  uri: 'http://localhost:4000/graphql',
+});
+
+const authLink = setContext((_, { headers }) => {
+  // get the authentication token from local storage if it exists
+  // return the headers to the context so httpLink can read them
+  return {
+    headers: {
+      ...headers,
+      authorization: token ? `Bearer ${token}` : "",
+    }
+  }
+});
 
 const client = new ApolloClient({
-  uri: 'http://localhost:4000/graphql',
   cache: new InMemoryCache(),
   credentials: "include",
-  // headers: {
-  //   authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NiwiZW1haWwiOiJ0ZXN0QHRlc3QuY29tIiwiZmlyc3ROYW1lIjoiVGVzdCIsImxhc3ROYW1lIjoiVXNlciIsImlhdCI6MTYzMDE4OTI5NSwiZXhwIjoxNjMwMjc1Njk1fQ.c5hVizVkxPnoDu_p8T-qUJ0xvNLZLxpVy1t7SCWBS5A`
-  // }
+  link: authLink.concat(httpLink),
 });
 
 ReactDOM.render(
-  <React.StrictMode>
     <ApolloProvider client={client}>
       <Routes/>
-    </ApolloProvider>
-  </React.StrictMode>,
+    </ApolloProvider>,
   document.getElementById('root')
 );
 

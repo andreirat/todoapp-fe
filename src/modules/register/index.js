@@ -7,19 +7,24 @@ import "./style.css"
 import "../../styles/common.css"
 import { icons } from "../../assets";
 import Title from "../../components/Title";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
+import { setAccessToken } from "../../utils/auth";
 
-function Register() {
+function Register({client}) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  let history = useHistory();
 
   const [registerUser, {data}] = useMutation(REGISTER, {
     variables: {registerInput: {name, email, password}},
   });
-
-  if (data && data.accessToken !== null) {
-    //redirect to tasks
+  console.log(client);
+  if (data && data.register.accessToken !== null) {
+    setAccessToken(data.register.accessToken).then(() => {
+      history.push("/")
+      window.location.reload();
+    })
   }
 
   return (
